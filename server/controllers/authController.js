@@ -26,3 +26,35 @@ export const register = async (req, res) => {
     res.status(500).json({ success: false, message: err.message });
   }
 };
+
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email }).select("+password");
+    if (!user || !(await user.matchPassword(password))) {
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid email or password" });
+    }
+    const token = generateToken(user._id);
+    const userObj = user.toJSON();
+    res.json({ success: true, token, user: userObj });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+export const getMe = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    let profile = null;
+    if (user.role === "provider") {
+      profile = await ProviderProfile.findOne({ user: user._id }).populate(
+        "categories",
+      );
+    }
+    res.json({ success: true, user, profile });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
