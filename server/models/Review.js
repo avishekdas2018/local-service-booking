@@ -30,7 +30,6 @@ const reviewSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-// Update provider's avg rating after save
 reviewSchema.post("save", async function () {
   const ProviderProfile = mongoose.model("ProviderProfile");
   const Review = mongoose.model("Review");

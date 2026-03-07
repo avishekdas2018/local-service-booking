@@ -6,6 +6,13 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import customerRoutes from "./routes/customerRoute.js";
+import providerRoutes from "./routes/providerRoute.js";
+import adminRoutes from "./routes/adminRoute.js";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -26,6 +33,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/customer", customerRoutes);
+app.use("/api/provider", providerRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Helth check endpoint
 app.get("/api/health", (req, res) =>

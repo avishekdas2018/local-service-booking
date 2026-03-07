@@ -1,7 +1,7 @@
-import Review from "../models/Review";
-import Booking from "../models/Booking";
-import ServiceCategory from "../models/ServiceCategory";
-import ProviderProfile from "../models/ProviderProfile";
+import Review from "../models/Review.js";
+import Booking from "../models/Booking.js";
+import ServiceCategory from "../models/ServiceCategory.js";
+import ProviderProfile from "../models/ProviderProfile.js";
 
 const getCategories = async (req, res) => {
   try {
@@ -155,12 +155,10 @@ const rescheduleBooking = async (req, res) => {
         .json({ success: false, message: "Not authorized" });
     }
     if (!["requested", "confirmed"].includes(booking.status)) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Cannot reschedule at current status",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Cannot reschedule at current status",
+      });
     }
     booking.rescheduleHistory.push({
       oldDate: booking.scheduledDate,
@@ -224,12 +222,10 @@ const submitReview = async (req, res) => {
         .json({ success: false, message: "Not authorized" });
     }
     if (booking.status !== "completed") {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Can only review completed bookings",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Can only review completed bookings",
+      });
     }
     if (booking.hasReview) {
       return res
