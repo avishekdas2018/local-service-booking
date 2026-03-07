@@ -5,6 +5,7 @@ import morgan from "morgan";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
+import customerRoutes from "./routes/customerRoute.js";
 
 dotenv.config();
 
@@ -19,8 +20,12 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Upload
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/customer", customerRoutes);
 
 // Helth check endpoint
 app.get("/api/health", (req, res) =>
