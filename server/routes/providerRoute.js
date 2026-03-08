@@ -17,7 +17,7 @@ import { authorize, protect } from "../middleware/auth.js";
 
 const router = express.Router();
 
-const guard = [protect, authorize("customer")];
+const guard = [protect, authorize("provider")];
 
 router.get("/profile", ...guard, getProfile);
 router.put("/profile", ...guard, upload.array("portfolio", 5), updateProfile);
