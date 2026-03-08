@@ -201,7 +201,7 @@ export default function HomePage() {
           {/* Bottom bar */}
           <div style={{ borderTop: '1px solid var(--border)', padding: '20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
             <p style={{ color: 'var(--text-dim)', fontSize: '0.8rem' }}>© {new Date().getFullYear()} LocalPro. All rights reserved.</p>
-            <p style={{ color: 'var(--text-dim)', fontSize: '0.8rem' }}>Made with 💜 in India</p>
+            <p style={{ color: 'var(--text-dim)', fontSize: '0.8rem' }}>Made with 💜 by Avishek Das</p>
           </div>
         </div>
       </footer>

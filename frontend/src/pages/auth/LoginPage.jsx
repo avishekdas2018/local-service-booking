@@ -49,12 +49,12 @@ export default function LoginPage() {
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
-        <div style={{ marginTop: '16px', padding: '12px', background: 'rgba(99,102,241,0.08)', borderRadius: '8px', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+        {/* <div style={{ marginTop: '16px', padding: '12px', background: 'rgba(99,102,241,0.08)', borderRadius: '8px', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
           <strong style={{ color: 'var(--text)' }}>Test Accounts:</strong><br />
           Admin: admin@localservices.com / admin1234<br />
           Customer: aarav@example.com / pass1234<br />
           Provider: rajesh@example.com / pass1234
-        </div>
+        </div> */}
         <p className="auth-footer">Don't have an account? <Link to="/register">Register</Link></p>
       </div>
     </div>
