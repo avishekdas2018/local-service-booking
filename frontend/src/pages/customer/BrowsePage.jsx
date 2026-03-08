@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import api from '../../api/axios';
@@ -36,7 +36,7 @@ function ProviderCard({ p }) {
 }
 
 export default function BrowsePage() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [ searchParams ] = useSearchParams();
   const [filters, setFilters] = useState({
     category: searchParams.get('category') || '',
     city: searchParams.get('city') || '',

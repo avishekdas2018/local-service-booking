@@ -11,7 +11,7 @@ function StatusTimeline({ statusHistory, currentStatus }) {
   return (
     <div className="timeline">
       {ALL_STATUSES.filter(s => s !== 'cancelled').map((s, i) => {
-        const isCancelled = currentStatus === 'cancelled';
+        //const isCancelled = currentStatus === 'cancelled';
         const hist = statusHistory?.find(h => h.status === s);
         const isDone = reached > i || (s === currentStatus && s !== 'cancelled');
         const isActive = s === currentStatus;

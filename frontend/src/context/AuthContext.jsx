@@ -9,7 +9,7 @@ export function AuthProvider({ children }) {
     return stored ? JSON.parse(stored) : null;
   });
   const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -25,8 +25,12 @@ export function AuthProvider({ children }) {
         .then(res => { setUser(res.data.user); setProfile(res.data.profile); })
         .catch(() => logout())
         .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
     }
-  }, [user]);
+    // we intentionally run this effect only once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const login = (token, userData, profileData = null) => {
     localStorage.setItem('token', token);
@@ -47,3 +51,5 @@ export function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
+
+export { AuthContext };
